@@ -96,7 +96,7 @@ Do this for the secrets route to achieve these results:
 
 ### No Secrets Above Clearance Level (Authorization)
 
-> Task: When authenticated, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`.
+X> Task: When authenticated, a user should only see secrets with a `secrecy_level` that is equal or less than the user's `clearance_level`.
 
 A user like `Captain Borodin` with password `shark` is be to visit `http://localhost:3000/#/secrets` to see all of the secrets! That's no good! There's a secret in there that calls him weird!
 
@@ -107,7 +107,7 @@ You should see the clearance level in the console log inside of secrets GET requ
 
 ## Stretch Goals
 
-### Hashing
+### Hashing--COMPLETED
 
 If you're interested in securely storing passwords, you should salt and hash them. Here is a quick video that explains it pretty well: https://www.youtube.com/watch?v=8ZtInClXe1Q
 
@@ -146,7 +146,7 @@ VALUES ('Admiral Greer', '$2b$10$p5Wkte33hlOBOcUtJie6H.PnCvk8v.KjZspVoAFtT7g5v5x
 ('Lieutenant Ryan', '$2b$10$p5Wkte33hlOBOcUtJie6H.PnCvk8v.KjZspVoAFtT7g5v5xK.EXVG', 4);
 ```
 
-### Salting
+### Salting--COMPLETED
 
 Now that we are no longer storing plain text passwords. The enemy is unable to see the crew's passwords. However, Lieutenant Ryan has been careless, and the enemy knows that his password is `tuna`. Because of this, they can see the lowest security information. Then they notice that Admiral Greer's hashed password perfectly matches Lieutenant Ryan's hashed password! They now know that Admiral Greer's password is `tuna` as well! We should fix our code so that even if two people have the same password, it has a different hash in the database. Enter salting! Salting is the process of generating a random string for each user. Notice that every password starts with `$2b$10$p5Wkte33hlOBOcUtJie6H.`. That is the salt! These should be random and generated uniquely for each user.
 
@@ -183,15 +183,15 @@ VALUES ('Admiral Greer', '$2b$10$uxPm0qeJAz70oqhEg8dX6uXlYc2PWUtPuZhTa65OiDv2LCH
 
 Admiral Greer and Lieutenant Ryan still have the same passwords as before, but it's not easy to see that because of salting and hashing.
 
-### Create an Environment Variable
+### Create an Environment Variable--COMPLETED
 
 `SERVER_SESSION_SECRET` is supposed to be a secret, but right now we are pushing it to GitHub! Let's create an environment variable so that we don't do this.
 
-- Uncomment `// return process.env.SERVER_SESSION_SECRET;` in `session-middleware.js`
-- Run `npm install dotenv` to get the node module that can create environment variables
-- Add the line `require('dotenv').config();` to the top of `server.js` to use the module
-- add `.env` to your `.gitignore` file
-- Create a `.env` file at the root of the project and paste this line into the file:
+X- Uncomment `// return process.env.SERVER_SESSION_SECRET;` in `session-middleware.js`
+X- Run `npm install dotenv` to get the node module that can create environment variables
+X- Add the line `require('dotenv').config();` to the top of `server.js` to use the module
+X- add `.env` to your `.gitignore` file
+X- Create a `.env` file at the root of the project and paste this line into the file:
   ```
   SERVER_SESSION_SECRET=superDuperSecret
   ```
