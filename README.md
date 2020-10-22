@@ -205,7 +205,7 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 - Run `npm start`
 - Navigate to `localhost:5000`
 
-### Deployment
+### Deployment--HOLY MOLY, I DID IT!  THIS IS COMPLETED
 
 1. Create a new Heroku project
 2. Link the Heroku project to the project GitHub Repo
